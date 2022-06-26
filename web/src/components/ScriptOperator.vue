@@ -41,35 +41,48 @@
           </v-col>
         </v-row>
       </v-radio-group>
-      <prism-editor class="my-editor" placeholder="hint" v-model="content" :highlight="highlighter" line-numbers></prism-editor>
+      <codemirror
+        ref="cmEditor"
+        :value="content"
+        :options="cmOptions"
+        @ready="onCmReady"
+        @focus="onCmFocus"
+        @input="onCmCodeChange"
+        placeholder="hint"
+      />
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-import { PrismEditor } from 'vue-prism-editor';
-import 'vue-prism-editor/dist/prismeditor.min.css';
-
-import { highlight, languages } from 'prismjs/components/prism-core';
-import 'prismjs/components/prism-clike';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/themes/prism-tomorrow.css';
+import 'codemirror/mode/javascript/javascript.js'
+import 'codemirror/theme/base16-dark.css'
 
 export default {
   components: {
-    PrismEditor,
+    codemirror,
   },
   props: ["args"],
   data: function () {
     return {
       idx: this.$vnode.key,
       mode: "link",
-      content: ""
+      content: "",
+      cmOptions: {
+        tabSize: 4,
+        mode: 'text/javascript',
+        theme: 'base16-dark',
+        lineNumbers: true,
+        line: true,
+      }
     }
   },
   computed: {
     hint() {
       return this.mode === 'link' ? "请输入链接地址" : "请输入一段脚本"
+    },
+    codemirror() {
+      return this.$refs.cmEditor.codemirror
     }
   },
   created() {
@@ -97,9 +110,6 @@ export default {
           }
         });
       }
-    },
-    highlighter(code) {
-      return highlight(code, languages.js); 
     },
   }
 }

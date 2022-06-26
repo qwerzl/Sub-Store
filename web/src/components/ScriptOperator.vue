@@ -48,7 +48,7 @@
         @ready="onCmReady"
         @focus="onCmFocus"
         @input="onCmCodeChange"
-        placeholder="hint"
+        :placeholder="hint"
       />
     </v-card-text>
   </v-card>
@@ -76,7 +76,6 @@ export default {
         theme: 'base16-dark',
         lineNumbers: true,
         line: true,
-        placeholder: 'hint',
       }
     }
   },

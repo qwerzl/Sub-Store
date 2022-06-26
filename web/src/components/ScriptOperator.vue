@@ -102,6 +102,9 @@ export default {
     }
   },
   methods: {
+    onCmCodeChange(newCode) {
+      this.content = newCode
+    },
     save() {
       if (this.content) {
         this.$emit("dataChanged", {

@@ -76,6 +76,7 @@ export default {
         theme: 'base16-dark',
         lineNumbers: true,
         line: true,
+        placeholder: 'hint',
       }
     }
   },

@@ -41,15 +41,7 @@
           </v-col>
         </v-row>
       </v-radio-group>
-      <codemirror
-        ref="cmEditor"
-        :value="content"
-        :options="cmOptions"
-        @ready="onCmReady"
-        @focus="onCmFocus"
-        @input="onCmCodeChange"
-        :placeholder="hint"
-      />
+      <codemirror v-model="content" placeholder="hint" :options="cmOptions" />
     </v-card-text>
   </v-card>
 </template>
@@ -102,9 +94,6 @@ export default {
     }
   },
   methods: {
-    onCmCodeChange(newCode) {
-      this.content = newCode
-    },
     save() {
       if (this.content) {
         this.$emit("dataChanged", {

@@ -41,7 +41,7 @@
           </v-col>
         </v-row>
       </v-radio-group>
-      <prism-editor class="my-editor" placeholder="hint" v-model="content" :highlight="highlighter" line-numbers></prism-editor>
+      <prism-editor class="my-editor" :label="hint" v-model="content" :highlight="highlighter" line-numbers></prism-editor>
     </v-card-text>
   </v-card>
 </template>
